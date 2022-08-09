@@ -115,7 +115,7 @@ runs:
       if: ${{ failure() && inputs.dockle }}
       env:
         SLACK_CHANNEL: dev
-        SLACK_COLOR: ${{ job.status }}
+        SLACK_COLOR: danger
         SLACK_MESSAGE: |
           Lint action check on *${{ github.ref_name }}* has failed for ${{ github.repository }}
         SLACK_TITLE: Deployment Failed
@@ -128,7 +128,7 @@ runs:
       if: ${{ inputs.deploy-fail-notification }}
       env:
         SLACK_CHANNEL: dev
-        SLACK_COLOR: ${{ job.status }}
+        SLACK_COLOR: danger
         SLACK_MESSAGE: |
           Lint action check on *${{ github.ref_name }}* has failed for ${{ github.repository }}
         SLACK_TITLE: Deployment Failed
