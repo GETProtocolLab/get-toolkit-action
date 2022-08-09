@@ -41,9 +41,6 @@ inputs:
   argocd-server:
     description: "ArgoCD server URI for production"
     required: false
-  github-secret:
-    description: "GitHub Secret for Actions"
-    required: true
   slack-webhook:
     description: "Slack Webhook for notifications"
     required: true
@@ -88,7 +85,7 @@ runs:
       with:
         argocd-server-url: ${{ inputs.argocd-server-testing }}
         argocd-token: ${{ inputs.argocd-auth-testing }}
-        github-token: ${{ inputs.github-secret }}
+        github-token: ${{ inputs.password }}
         argocd-version: v2.1.6
         argocd-extra-cli-args: --grpc-web
   
@@ -98,7 +95,7 @@ runs:
       with:
         argocd-server-url: ${{ inputs.argocd-server-staging }}
         argocd-token: ${{ inputs.argocd-auth-staging }}
-        github-token: ${{ inputs.github-secret }}
+        github-token: ${{ inputs.password }}
         argocd-version: v2.1.6
         argocd-extra-cli-args: --grpc-web
 
@@ -108,7 +105,7 @@ runs:
       with:
         argocd-server-url: ${{ inputs.argocd-server }}
         argocd-token: ${{ inputs.argocd-auth }}
-        github-token: ${{ inputs.github-secret }}
+        github-token: ${{ inputs.password }}
         argocd-version: v2.1.6
         argocd-extra-cli-args: --grpc-web
 
