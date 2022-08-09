@@ -24,22 +24,10 @@ inputs:
     required: false
     default: true
   argocd-auth:
-    description: "ArgoCD Auth token for production"
-    required: false
-  argocd-auth-staging:
-    description: "ArgoCD Auth token for staging"
-    required: false
-  argocd-auth-testing:
-    description: "ArgoCD Auth token for testing"
-    required: false
-  argocd-server-testing:
-    description: "ArgoCD server URI for testing"
-    required: false
-  argocd-server-staging:
-    description: "ArgoCD server URI for staging"
+    description: "ArgoCD Auth token"
     required: false
   argocd-server:
-    description: "ArgoCD server URI for production"
+    description: "ArgoCD server URI"
     required: false
   slack-webhook:
     description: "Slack Webhook for notifications"
@@ -80,27 +68,7 @@ runs:
       if: ${{ inputs.argocd }}
 
     - uses: quizlet/argocd-diff-action@master
-      name: ArgoCD Diff testing
-      if: ${{ inputs.argocd }}
-      with:
-        argocd-server-url: ${{ inputs.argocd-server-testing }}
-        argocd-token: ${{ inputs.argocd-auth-testing }}
-        github-token: ${{ inputs.password }}
-        argocd-version: v2.1.6
-        argocd-extra-cli-args: --grpc-web
-  
-    - uses: quizlet/argocd-diff-action@master
-      name: ArgoCD Diff staging
-      if: ${{ inputs.argocd }}
-      with:
-        argocd-server-url: ${{ inputs.argocd-server-staging }}
-        argocd-token: ${{ inputs.argocd-auth-staging }}
-        github-token: ${{ inputs.password }}
-        argocd-version: v2.1.6
-        argocd-extra-cli-args: --grpc-web
-
-    - uses: quizlet/argocd-diff-action@master
-      name: ArgoCD Diff production
+      name: ArgoCD Diff
       if: ${{ inputs.argocd }}
       with:
         argocd-server-url: ${{ inputs.argocd-server }}

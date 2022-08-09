@@ -27,22 +27,10 @@ This GitHub action will lint and test project's image with Dockle and check the 
   - required: `false`
   - default: `true`
 - `argocd-auth`:
-  - description: `ArgoCD Auth token for production`
+  - description: `ArgoCD Auth token`
   - required: `false`
-- `argocd-auth-tstaging`:
-  - description: `ArgoCD Auth token for staging`
-  - required: `false`
-- `argocd-auth-testing`:
-  - description: `ArgoCD Auth token for testing`
-  - required: `false`
-- `argocd-server-testing`:
-  - description: `"ArgoCD server URI for testing"`
-  - required: false
-- `argocd-server-staging`:
-  - description: `"ArgoCD server URI for staging"`
-  - required: false
 - `argocd-server`:
-  - description: `"ArgoCD server URI for production"`
+  - description: `"ArgoCD server URI"`
   - required: false
 - `github-secret`:
   - description: `GitHub Secret for Actions`
