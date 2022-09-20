@@ -1,0 +1,18 @@
+name: "GET Toolkit to lint and notify failures"
+description: "Lints using Dockle and ArgoCD diff and sends notification to slack"
+inputs:
+  registry:
+    description: "Registry's host"
+    required: false
+    default: "ghcr.io"
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+
+    - uses: 8BitJonny/gh-get-current-pr@2.1.1
+      id: PR
+
+    - shell: bash
+      if: ${{ steps.PR.outputs.number }}
+      run: echo "Your PR number is ${{ steps.PR.outputs.number }} and its JSON is ${{ steps.PR.outputs.pr }}"
