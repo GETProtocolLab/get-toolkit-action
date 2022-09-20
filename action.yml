@@ -5,6 +5,10 @@ inputs:
     description: "Registry's host"
     required: false
     default: "ghcr.io"
+  token:
+    description: "Token"
+    required: false
+    default: "ghcr.io"
 runs:
   using: "composite"
   steps:
@@ -16,3 +20,12 @@ runs:
     - shell: bash
       if: ${{ steps.PR.outputs.number }}
       run: echo "Your PR number is ${{ steps.PR.outputs.number }} and its JSON is ${{ steps.PR.outputs.pr }}"
+
+    - uses: mshick/add-pr-comment@v1
+      if: ${{ steps.PR.outputs.number }}
+      with:
+        message: |
+          **Hello from the other side!**
+          🌏
+          !
+        repo-token: ${{ inputs.token }}
